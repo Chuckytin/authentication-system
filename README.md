@@ -29,7 +29,7 @@ Microservicio de autenticación con Spring Boot que incluye registro, login, ver
 | Método | Endpoint            | Descripción                          |
 |--------|---------------------|--------------------------------------|
 | POST   | `/api/v1/login`     | Autenticación con JWT                |
-| GET    | `/api/v1/is-authenticated` | Verifica sesión activa         |
+| GET    | `/api/v1/is-authenticated` | Verifica sesión activa        |
 
 ### Gestión de Cuenta
 | Método | Endpoint                  | Descripción                          |
@@ -44,6 +44,7 @@ Microservicio de autenticación con Spring Boot que incluye registro, login, ver
 |--------|---------------------|--------------------------------------|
 | POST | `/api/v1/register`    | Registra nuevo usuario               |
 | GET  | `/api/v1/profile`     | Obtiene datos del perfil             |
+| POST | `/api/v1/logout`      | Cierra la sesión del usuario         |
 
 ## Configuración
 

@@ -6,6 +6,7 @@ import com.example.authify.io.ResetPasswordRequest;
 import com.example.authify.service.AppUserDetailsService;
 import com.example.authify.service.ProfileService;
 import com.example.authify.util.JwtUtil;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -139,6 +140,26 @@ public class AuthController {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
+    }
+
+    /**
+     * Cierra la sesión del usuario actual invalidiando la cookie JWT.
+     * - Establece un valor vacío para el token.
+     * - Establece el tiempo de vida máximo (maxAge) a 0.
+     */
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse response) {
+        ResponseCookie cookie = ResponseCookie.from("jwt", "")
+                .httpOnly(true)
+                .secure(false)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, cookie.toString())
+                .body("Logged out successfully!");
     }
 
 }

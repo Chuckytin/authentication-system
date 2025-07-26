@@ -7,7 +7,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-
+/**
+ * Renderiza la aplicación en el elemento root del DOM.
+ */
 createRoot(document.getElementById('root')).render(
 
   <BrowserRouter>

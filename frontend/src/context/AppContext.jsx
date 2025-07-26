@@ -1,7 +1,10 @@
+/**
+ * Contexto de la aplicación que proporciona estados y funciones globales.
+ */
 import { createContext, useState } from "react";
 import { AppConstants } from "../util/constants";
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export const AppContext = createContext();
 
@@ -11,6 +14,9 @@ export const AppContextProvider = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userData, setUserData] = useState(false);
 
+    /**
+     * Obtiene los datos del usuario desde el backend.
+     */
     const getUserData = async () => {
         try {
             const response = await axios.get(backendURL + "/profile");

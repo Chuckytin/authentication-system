@@ -2,6 +2,9 @@ import { useContext } from "react";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 
+/**
+ * Componente de cabecera que muestra un mensaje de bienvenida personalizado.
+ */
 const Header = () => {
     const { userData } = useContext(AppContext);
 

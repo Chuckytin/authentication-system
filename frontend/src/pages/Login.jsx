@@ -5,6 +5,9 @@ import { AppContext } from '../context/AppContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
+/**
+ * Componente de Login que maneja la autenticación y registro de usuarios.
+ */
 const Login = () => {
 
     const [isCreateAccount, setIsCreateAccount] = useState(false);
@@ -15,6 +18,9 @@ const Login = () => {
     const { backendURL, setIsLoggedIn, getUserData } = useContext(AppContext);
     const navigate = useNavigate();
 
+    /**
+     * Maneja el envío del formulario de login/registro.
+     */
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         axios.defaults.withCredentials = true;
@@ -155,7 +161,7 @@ const Login = () => {
                                 color: "#4a5568",
                                 fontWeight: "500"
                             }}>Full Name</label>
-                            <input 
+                            <input
                                 type="text"
                                 id="fullName"
                                 className="form-control py-2"
@@ -177,7 +183,7 @@ const Login = () => {
                             color: "#4a5568",
                             fontWeight: "500"
                         }}>Email</label>
-                        <input 
+                        <input
                             type="email"
                             id="email"
                             className="form-control py-2"
@@ -198,7 +204,7 @@ const Login = () => {
                             color: "#4a5568",
                             fontWeight: "500"
                         }}>Password</label>
-                        <input 
+                        <input
                             type="password"
                             id="password"
                             className="form-control py-2"
@@ -222,8 +228,8 @@ const Login = () => {
                         </div>
                     )}
 
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         className="btn w-100 py-2"
                         style={{
                             background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
@@ -254,7 +260,7 @@ const Login = () => {
                                 Already have an account?{" "}
                                 <span
                                     onClick={() => setIsCreateAccount(false)}
-                                    style={{ 
+                                    style={{
                                         color: "#667eea",
                                         cursor: "pointer",
                                         fontWeight: "500",
@@ -269,7 +275,7 @@ const Login = () => {
                                 Don't have an account?{" "}
                                 <span
                                     onClick={() => setIsCreateAccount(true)}
-                                    style={{ 
+                                    style={{
                                         color: "#667eea",
                                         cursor: "pointer",
                                         fontWeight: "500",
@@ -283,7 +289,7 @@ const Login = () => {
                     </p>
                 </div>
             </div>
-                   
+
         </div>
     )
 }

@@ -5,12 +5,18 @@ import { AppContext } from "../context/AppContext";
 import { toast } from "react-toastify";
 import axios from 'axios';
 
+/**
+ * Componente de barra de navegación superior que muestra el logo y maneja el estado de autenticación.
+ */
 const Menubar = () => {
     const navigate = useNavigate();
     const { userData, backendURL, setIsLoggedIn, setUserData } = useContext(AppContext);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 
+    /**
+     * Efecto para manejar clics fuera del dropdown del usuario.
+     */
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -21,6 +27,9 @@ const Menubar = () => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+    /**
+     * Maneja el logout del usuario.
+     */
     const handleLogout = async () => {
         try {
             axios.defaults.withCredentials = true;

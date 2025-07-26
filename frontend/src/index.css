@@ -6,3 +6,12 @@
     padding: 0;
     font-family: 'Outfit', sans-serif;
 }
+
+@keyframes moveBubble {
+    0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    50% {
+        transform: translateY(-80px) translateX(40px) scale(0.9);
+    }
+}

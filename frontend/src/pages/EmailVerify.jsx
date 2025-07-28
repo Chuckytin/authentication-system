@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
-import { useContext, useRef, useState, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -11,11 +11,12 @@ import axios from "axios";
 const EmailVerify = () => {
     const inputRef = useRef([]);
     const [loading, setLoading] = useState(false);
-    const [resendDisabled, setResendDisabled] = useState(false);
-    const [countdown, setCountdown] = useState(30);
-    const { getUserData, userData, backendURL } = useContext(AppContext);
+    const { getUserData, userData, isLoggedIn, backendURL } = useContext(AppContext);
     const navigate = useNavigate();
 
+    /**
+     * Maneja el cambio en los inputs del OTP
+     */
     const handleChange = (e, index) => {
         const value = e.target.value.replace(/\D/, "");
         e.target.value = value;
@@ -24,12 +25,18 @@ const EmailVerify = () => {
         }
     }
 
+    /**
+     * Maneja la tecla Backspace en los inputs del OTP
+     */
     const handleKeyDown = (e, index) => {
         if (e.key === "Backspace" && !e.target.value && index > 0) {
             inputRef.current[index - 1].focus();
         }
     }
 
+    /**
+     * Maneja el pegado de texto en los inputs del OTP
+     */
     const handlePaste = (e) => {
         e.preventDefault();
         const paste = e.clipboardData.getData("text").slice(0, 6).split("");
@@ -42,6 +49,9 @@ const EmailVerify = () => {
         inputRef.current[next].focus();
     }
 
+    /**
+     * Valida el OTP ingresado con el backend
+     */
     const handleVerify = async () => {
         const otp = inputRef.current.map(input => input.value).join("");
         if (otp.length !== 6) {
@@ -65,6 +75,13 @@ const EmailVerify = () => {
             setLoading(false);
         }
     }
+
+    /**
+     * Efecto que redirige al home si el usuario ya está verificado
+     */
+    useEffect(() => {
+        isLoggedIn && userData && userData.isAccountVerified && navigate("/");
+    }, [isLoggedIn, userData]);
 
     return (
         <div className="position-relative min-vh-100 d-flex flex-column justify-content-center align-items-center"

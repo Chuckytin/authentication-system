@@ -1,7 +1,7 @@
 /**
  * Contexto de la aplicación que proporciona estados y funciones globales.
  */
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { AppConstants } from "../util/constants";
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -9,6 +9,8 @@ import axios from 'axios';
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
+
+    axios.defaults.withCredentials = true;
 
     const backendURL = AppConstants.BACKEND_URL;
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,7 +21,7 @@ export const AppContextProvider = (props) => {
      */
     const getUserData = async () => {
         try {
-            const response = await axios.get(backendURL + "/profile");
+            const response = await axios.get(`${backendURL}/profile`);
             if (response.status === 200) {
                 setUserData(response.data);
             } else {
@@ -29,6 +31,33 @@ export const AppContextProvider = (props) => {
             toast.error(error.message);
         }
     }
+
+    /**
+     * Verifica el estado de autenticación del usuario contra el backend.
+     */
+    const getAuthState = async () => {
+        try {
+            const response = await axios.get(`${backendURL}/is-authenticated`);
+            if (response.status === 200 & response.data === true) {
+                setIsLoggedIn(true);
+                await getUserData();
+            } else {
+                setIsLoggedIn(false);
+            }
+        } catch (error) {
+            if (error.response) {
+                const msg = error.response.data?.message || "Authentication check failed";
+                toast.error(msg);
+            } else {
+                toast.error(error.message);
+            }
+            setIsLoggedIn(false);
+        }
+    }
+
+    useEffect(() => {
+        getAuthState();
+    }, []);
 
     const contextValue = {
         backendURL,

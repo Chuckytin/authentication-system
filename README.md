@@ -89,7 +89,8 @@ MAIL_FROM=no-reply@tudominio.com
 URL_FRONTEND=tu_dominio_frontend
 ```
 
-### Variables de Entorno Frontend(`.env`)
+### Variables de Entorno Frontend (`.env`)
 ```properties
+# Backend
 URL_BACKEND=tu_dominio_backend
 ```

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifica tu email - Authify</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .content {
+            padding: 20px;
+        }
+        .otp-display {
+            font-size: 24px;
+            letter-spacing: 3px;
+            text-align: center;
+            margin: 30px 0;
+            padding: 15px;
+            background: #f0f4f8;
+            border-radius: 6px;
+            color: #2d3748;
+            font-weight: bold;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #6a5af9, #8268f9);
+            color: white !important;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #718096;
+            border-top: 1px solid #eaeaea;
+        }
+        .steps {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        .steps li {
+            margin-bottom: 10px;
+        }
+        @media only screen and (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h2>Verifica tu dirección de email</h2>
+    </div>
+
+    <div class="content">
+        <p>Hola <span th:text="${name}">Usuario</span>,</p>
+        <p>¡Gracias por registrarte en Authify! Para completar tu registro, por favor verifica tu dirección de email:</p>
+
+        <div class="otp-display" th:text="${otp}">654321</div>
+
+        <p>Este código de verificación expirará en <strong th:text="${expirationTime}">24 horas</strong>.</p>
+
+        <h3>¿Cómo verificar?</h3>
+        <ol class="steps">
+            <li>Copia el código de 6 dígitos mostrado arriba</li>
+            <li>Ingresa el código en la página de verificación</li>
+        </ol>
+
+        <p>Si no creaste una cuenta con nosotros, por favor ignora este mensaje.</p>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 Authify. Todos los derechos reservados.</p>
+        <p>
+            <a href="#" style="color: #718096; text-decoration: none;">Política de Privacidad</a> |
+            <a href="#" style="color: #718096; text-decoration: none;">Términos de Servicio</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

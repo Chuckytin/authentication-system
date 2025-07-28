@@ -3,6 +3,7 @@ package com.example.authify.config;
 import com.example.authify.filter.JwtRequestFilter;
 import com.example.authify.service.AppUserDetailsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +22,9 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Configuración principal de seguridad para la aplicación.
@@ -31,6 +34,9 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+    @Value("${app.frontend.url}")
+    private String frontendUrls;
 
     private final AppUserDetailsService appUserDetailsService;
     private final JwtRequestFilter jwtRequestFilter;
@@ -77,7 +83,11 @@ public class SecurityConfig {
      */
     private CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173")); //TODO: cambiar host cuanto esté desplegado
+        configuration.setAllowedOrigins(
+                Arrays.stream(frontendUrls.split(","))
+                        .map(String::trim)
+                        .collect(Collectors.toList())
+        );
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);

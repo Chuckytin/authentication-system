@@ -4,6 +4,7 @@ import com.example.authify.io.ProfileRequest;
 import com.example.authify.io.ProfileResponse;
 import com.example.authify.service.EmailService;
 import com.example.authify.service.ProfileService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class ProfileController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProfileResponse register(@Valid @RequestBody ProfileRequest profileRequest) {
+    public ProfileResponse register(@Valid @RequestBody ProfileRequest profileRequest) throws MessagingException {
         ProfileResponse profileResponse = profileService.createProfile(profileRequest);
         emailService.sendWelcomeEmail(profileResponse.getEmail(), profileResponse.getName());
         return profileResponse;

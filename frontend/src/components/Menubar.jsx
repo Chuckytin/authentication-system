@@ -44,6 +44,24 @@ const Menubar = () => {
         }
     }
 
+    /**
+     * Envía un OTP al correo electrónico del usuario para la verificación
+     */
+    const sendVerificationOtp = async () => {
+        try {
+            axios.defaults.withCredentials = true;
+            const response = await axios.post(`${backendURL}/send-otp`);
+            if (response.status === 200) {
+                navigate("/email-verify");
+                toast.success("OTP has been sent successfully.");
+            } else {
+                toast.error("Unable to send OTP!");
+            }
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
+    }
+
     return (
         <nav className="navbar bg-white px-4 py-3 d-flex justify-content-between align-items-center shadow-sm">
 
@@ -118,6 +136,7 @@ const Menubar = () => {
                             {!userData.isAccountVerified && (
                                 <div className="dropdown-item py-1 px-2"
                                     style={{ cursor: "pointer" }}
+                                    onClick={sendVerificationOtp}
                                 >
                                     Verify email
                                 </div>

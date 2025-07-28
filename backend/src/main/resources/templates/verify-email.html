@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verifica tu email - Authify</title>
+    <title>Verify Your Email - Authify</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -79,31 +79,31 @@
 <body>
 <div class="container">
     <div class="header">
-        <h2>Verifica tu dirección de email</h2>
+        <h2>Verify Your Email Address</h2>
     </div>
 
     <div class="content">
-        <p>Hola <span th:text="${name}">Usuario</span>,</p>
-        <p>¡Gracias por registrarte en Authify! Para completar tu registro, por favor verifica tu dirección de email:</p>
+        <p>Hello <span th:text="${name} ?: 'User'">User</span>,</p>
+        <p>Thank you for registering with Authify! To complete your registration, please verify your email address:</p>
 
         <div class="otp-display" th:text="${otp}">654321</div>
 
-        <p>Este código de verificación expirará en <strong th:text="${expirationTime}">24 horas</strong>.</p>
+        <p>This verification code will expire in <strong th:text="${expirationTime}">24 hours</strong>.</p>
 
-        <h3>¿Cómo verificar?</h3>
+        <h3>How to verify?</h3>
         <ol class="steps">
-            <li>Copia el código de 6 dígitos mostrado arriba</li>
-            <li>Ingresa el código en la página de verificación</li>
+            <li>Copy the 6-digit code shown above</li>
+            <li>Enter the code on the verification page</li>
         </ol>
 
-        <p>Si no creaste una cuenta con nosotros, por favor ignora este mensaje.</p>
+        <p>If you didn't create an account with us, please ignore this message.</p>
     </div>
 
     <div class="footer">
-        <p>© 2025 Authify. Todos los derechos reservados.</p>
+        <p>© 2025 Authify. All rights reserved.</p>
         <p>
-            <a href="#" style="color: #718096; text-decoration: none;">Política de Privacidad</a> |
-            <a href="#" style="color: #718096; text-decoration: none;">Términos de Servicio</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Privacy Policy</a> |
+            <a href="#" style="color: #718096; text-decoration: none;">Terms of Service</a>
         </p>
     </div>
 </div>

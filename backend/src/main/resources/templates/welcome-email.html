@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido a Authify</title>
+    <title>Welcome to Authify</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -61,31 +61,31 @@
 <body>
 <div class="container">
     <div class="header">
-        <h2>¡Bienvenido a Authify!</h2>
+        <h2>Welcome to Authify!</h2>
     </div>
 
     <div class="content">
-        <p>Hola <span th:text="${name}">Usuario</span>,</p>
-        <p>¡Gracias por registrarte en nuestra plataforma! Estamos encantados de tenerte con nosotros.</p>
+        <p>Hello <span th:text="${name} ?: 'User'">User</span>,</p>
+        <p>Thank you for registering on our platform! We're thrilled to have you with us.</p>
 
-        <p>Tu cuenta ha sido creada exitosamente y ahora puedes acceder a todos nuestros servicios.</p>
+        <p>Your account has been successfully created and you can now access all our services.</p>
 
-        <p>Para comenzar, puedes iniciar sesión en nuestra plataforma usando las credenciales que proporcionaste durante el registro.</p>
+        <p>To get started, you can log in to our platform using the credentials you provided during registration.</p>
 
         <div style="text-align: center; margin: 30px 0;">
-            <a th:href="${loginUrl}" class="button">Iniciar Sesión</a>
+            <a th:href="${loginUrl}" class="button">Log In</a>
         </div>
 
-        <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar a nuestro equipo de soporte.</p>
+        <p>If you have any questions or need assistance, please don't hesitate to contact our support team.</p>
 
-        <p>¡Esperamos que disfrutes de nuestra plataforma!</p>
+        <p>We hope you enjoy our platform!</p>
     </div>
 
     <div class="footer">
-        <p>© 2025 Authify. Todos los derechos reservados.</p>
+        <p>© 2025 Authify. All rights reserved.</p>
         <p>
-            <a href="#" style="color: #718096; text-decoration: none;">Política de Privacidad</a> |
-            <a href="#" style="color: #718096; text-decoration: none;">Términos de Servicio</a>
+            <a href="#" style="color: #718096; text-decoration: none;">Privacy Policy</a> |
+            <a href="#" style="color: #718096; text-decoration: none;">Terms of Service</a>
         </p>
     </div>
 </div>

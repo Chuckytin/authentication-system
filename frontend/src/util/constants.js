@@ -1,3 +1,4 @@
 export const AppConstants = {
-    BACKEND_URL: 'http://localhost:8080/api/v1'
+    BACKEND_URL: import.meta.env.BACKEND_URL || 'http://localhost:8080/api/v1'
 }
+//TODO: Añadir en el .env la URL del backend cuando esté desplegado
